@@ -52,11 +52,9 @@ void Header() {
 
 void AskForLoanInfo(MortInfo &mortData) {
 
-	float interest;
-	int principal, term;
 
 	cout << "\n What is the ammount of the loan in whole dollars? ";
-	cin >> mortData.principal;
+	cin >> mortData.principal; 
 
 	cout << "\n Is the term 15, 25, or 30 years? ";
 	cin >> mortData.term;
@@ -83,8 +81,7 @@ void CalcEndOfLoan(MortInfo &mortData) {
 	time_t rawTime;
 	tm *OStime;
 	time(&rawTime);
-
-
+	
 	//get the system time
 	time(&rawTime);
 	//get the local time
@@ -97,18 +94,19 @@ void CalcEndOfLoan(MortInfo &mortData) {
 
 	//find the end of the loan
 	mortData.monEnd = mortData.monStart;
-	mortData.dayEnd = mortData.dayStart; //come back to get the actual end date.
+	mortData.dayEnd = mortData.dayStart; //come back to get the actual end date. 
 	mortData.yearEnd = mortData.yearStart + mortData.term;
-
+	
 	//define number of days in each month
 	int dayCount[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 }
 
 bool WriteMort(string result, string filename) {
 
-
+	
 	cout << "\n What is the name of the output file? ";
 	getline(cin, filename);
+	cin.ignore();
 	filename = filename + ".txt";
 	//declare output file
 	ofstream outputFile;
@@ -121,10 +119,12 @@ bool WriteMort(string result, string filename) {
 	}
 
 	//write the file by calling MortCalc()
-	outputFile << MortCalc(mortData);
+	outputFile << MortCalc(mortData) << endl;
 	//close the file after writing
 	outputFile.close();
 	cout << "\n The file was written. ";
 	return true;
+
+
 
 }
