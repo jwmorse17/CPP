@@ -48,7 +48,7 @@ public class Hangman {
                                           char[] knownLetters) {
                
         for(int i = 0; i <= word.length(); i++) {
-			if(word.contains(guessedLetter)) {
+	    if(word.contains(guessedLetter)) {
                 //knownLetters.add(guessedLetter);
                 return true;
             } else { 
