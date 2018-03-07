@@ -1,9 +1,8 @@
 /**
  * CS 152 Lab 5 - Hangman
  *
- * Implement the methods needed to play a game of hangman.
  *
- * Student name: YOUR NAME GOES HERE
+ * Student name: Joshua Morse
  */
 import java.util.Scanner;
 
