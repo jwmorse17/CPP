@@ -1,6 +1,7 @@
 /**
  * CS 152 Lab 5 - Hangman
  *
+ * Implement the methods needed to play a game of hangman.
  *
  * Student name: Joshua Morse
  */
@@ -30,9 +31,16 @@ public class Hangman {
      * @return True if knownLetters has no blanks (that is, no asterisks)
      */
     public static boolean isComplete(char[] knownLetters) {
-                           
         
-        return false; // return set to false for now so program compiles during testing
+        boolean complete = false;
+        for(char check : knownLetters) {
+            if(check == '*'){
+                complete = false;
+            } else {
+                complete = true;
+            }
+        }
+        return complete;
     }
 
     /**
@@ -46,15 +54,23 @@ public class Hangman {
      */
     public static boolean updateWithGuess(char guessedLetter, String word,
                                           char[] knownLetters) {
-               
-        for(int i = 0; i <= word.length(); i++) {
-	    if(word.contains(guessedLetter)) {
-                //knownLetters.add(guessedLetter);
-                return true;
-            } else { 
-                return false;
-            }
+        System.out.println(word);   		
+    	boolean correctGuess = false;
+        int i = 0, j = 0;
+        while(i <= word.length() + 1) {
+			
+        		if(word.indexOf(guessedLetter) == -1) {
+        			correctGuess = false;
+        		} else {
+        			correctGuess = true;
+                    while(j <= word.length() + 1) {
+                    knownLetters[word.indexOf(guessedLetter)] = guessedLetter;
+                    j++;
+                    }
+                }
+            i++;
         }
+        return correctGuess;
     }
 
 
@@ -184,7 +200,7 @@ public class Hangman {
 
             boolean foundLetter = updateWithGuess(letter, word, known);
             if(!foundLetter) {
-                System.out.println("Sorry, there is no " + letter);
+                System.out.println("Sorry, there is no: " + letter);
                 guesses--;
             }
         }
